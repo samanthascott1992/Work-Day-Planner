@@ -13,7 +13,9 @@ $( ".saveEvent" ).click(function() {
 });
 
 function startTime() {
-    document.getElementById('currentDay').innerHTML = moment().format("MMM Do YY hh : mm : ss");
+    document.getElementById('currentDay').innerHTML = moment().format("MMM Do YY") 
+        + "<br>"
+        + moment().format(" hh : mm : ss");
     var t = setTimeout(startTime, 500);
 };
 
@@ -22,11 +24,19 @@ function startTime() {
 // }  
 
 $( ".hour").ready(function() {
-    var hours = document.getElementsByClassName('hours');
-    var currentHour = moment().format("hh");
-    console.log("hours[i]: " + hours);
-    for(var i = 0 ; i < hours.length; i++){
-        if(hours[i].attr("id") < currentHour){
+    var hours = document.getElementsByClassName('hour');
+    var currentHour = moment().format("k");
+    console.log("hours: " + hours);
+    
+    for(var i = hours.length ; i < hours.length+9 ; i++){
+        console.log("hours.namedItem(" + i +"):" + hours.namedItem(i).innerText);
+        console.log("Comparing i: " + i + " to currentHour: " + currentHour);
+        if(i <= currentHour){
+            hours.namedItem(i).style.backgroundColor = "teal";
+            //hours.namedItem(i).
+        }
+        else{
+            hours.namedItem(i).style.backgroundColor = "green";
         }
     }
     //     if(hours[i].attr('id').replace("save","") < currentHour) {
