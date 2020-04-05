@@ -78,6 +78,8 @@ textarea{
 .hourEvent {
   width: 58%;
   display: inline-block;
+  z-index:2;
+  cursor: pointer;
 }
 
 .hourSave {
