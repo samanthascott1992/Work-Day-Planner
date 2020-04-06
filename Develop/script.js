@@ -3,10 +3,6 @@
 
 var currentDay = $("#currentDay")
 
-console.log(moment().format("MMM Do YY"));
-console.log(moment().format("hh : mm :  ss"));
-
-
 function startTime() {
     document.getElementById('currentDay').innerHTML = moment().format("MMM Do YY") 
         + "<br>"
@@ -31,26 +27,33 @@ $( ".hour" ).ready(function() {
     }
 
     $( ".saveEvent").click(function(){
-        var hour = $(this).attr('id');
-        console.log("Hour: " + hour);
+        var hour = this.id;
+        var event = document.getElementById(hour.replace("save","") + 'hourEvent');
+        if(event){
+            event.parentElement.innerHTML = event.value;
+            event.display = "none";
+        }
     });
 });
 
 $( ".hourEvent" ).ready(function() {
+    
+    
     var events = document.getElementsByClassName('hourEvent');
     for(var i = 0; i < events.length; i++){
         events.item(i).innerHTML = "Click to edit...";
     }
 
     $( ".hourEvent" ).click(function() {
-        console.log("In click event...");
         $( this ).display = "none";
-        console.log("this" + this);
-        console.log("this.innerHTML" + this.innerHTML);
-        if( this.innerHTML == "Click to edit..."){
+        if( this.innerHTML != ""){
             var newInput = document.createElement("INPUT");
-            newInput.attributes("id=" + $(this).attr('id'));
-            $( this ).append(newInput);
+            newInput.id = "" + this.parentElement.id + this.className;
+            newInput.style = "display: inline-block";
+            this.innerHTML = "";
+            this.appendChild(newInput);
+            newInput.focus();
         }
-    })
+    });
+
 });
