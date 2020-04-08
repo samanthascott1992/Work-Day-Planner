@@ -29,11 +29,14 @@ $( ".hour" ).ready(function() {
     $( ".saveEvent").click(function(){
         var hour = this.id;
         var event = document.getElementById(hour.replace("save","") + 'hourEvent');
+          localStorage.setItem(hour, event.value);
+          console.log(localStorage.getItem(hour));
         if(event){
             event.parentElement.innerHTML = event.value;
             event.display = "none";
         }
     });
+ 
 });
 
 $( ".hourEvent" ).ready(function() {
@@ -57,3 +60,4 @@ $( ".hourEvent" ).ready(function() {
     });
 
 });
+
