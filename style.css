@@ -2,7 +2,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
-}
+  }
 
 textarea{
   background: transparent;
@@ -85,4 +85,8 @@ textarea{
 .hourSave {
   width: 20%;
   display: inline-block;
+}
+#container {
+  border-radius;
+
 }

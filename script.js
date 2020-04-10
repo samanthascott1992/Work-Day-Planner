@@ -34,6 +34,7 @@ $( ".hour" ).ready(function() {
         if(event){
             event.parentElement.innerHTML = event.value;
             event.display = "none";
+            // $("input[type='submit'][value='Search']").attr("onclick", "form.act.value='detailSearch'; clicked = true;  return true;");
         }
     });
  
