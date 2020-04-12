@@ -13,7 +13,8 @@ function startTime() {
 $( ".hour" ).ready(function() {
     var hours = document.getElementsByClassName('hour');
     var currentHour = moment().format("k");
-    
+
+
     for(var i = hours.length ; i < hours.length+9 ; i++){
         if(i < currentHour){
             hours.namedItem(i).style.backgroundColor = "#FF99CC";
@@ -26,15 +27,18 @@ $( ".hour" ).ready(function() {
         }
     }
 
+   
+
     $( ".saveEvent").click(function(){
         var hour = this.id;
         var event = document.getElementById(hour.replace("save","") + 'hourEvent');
-          localStorage.setItem(hour, event.value);
-          console.log(localStorage.getItem(hour));
+        var localStorageEvent = localStorage.getItem(hour.replace("save","") + 'hourEvent');
+        localStorage.setItem(hour.replace("save","") + 'hourEvent', event.value);
+        console.log(localStorage.getItem(hour));
+     
         if(event){
             event.parentElement.innerHTML = event.value;
             event.display = "none";
-            // $("input[type='submit'][value='Search']").attr("onclick", "form.act.value='detailSearch'; clicked = true;  return true;");
         }
     });
  
@@ -42,10 +46,17 @@ $( ".hour" ).ready(function() {
 
 $( ".hourEvent" ).ready(function() {
     
-    
     var events = document.getElementsByClassName('hourEvent');
     for(var i = 0; i < events.length; i++){
-        events.item(i).innerHTML = "Click to edit...";
+        var n = i+9;
+        n = n + 'hourEvent';
+        var item = localStorage.getItem(n);
+        if(item){
+            events.item(i).innerHTML = item;
+        }
+        else{
+            events.item(i).innerHTML = "Click to edit...";
+        }
     }
 
     $( ".hourEvent" ).click(function() {
